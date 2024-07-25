@@ -21,7 +21,14 @@ const Color txtColorTwo= Color(0xFF333333);
                           borderSide: BorderSide.none,
                         );
 
-
+TextStyle homeScreenTxtStyle() {
+    return const TextStyle(
+      fontSize: 13,
+      fontFamily: 'Arial',
+      fontWeight: FontWeight.w500,
+      color: textColorHead,
+    );
+  }
 
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});

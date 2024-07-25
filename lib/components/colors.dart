@@ -16,6 +16,11 @@ const Color inputTxt = Color(0xFFC2BDBD);
 const Color txtColorOne= Color(0xFFFAFAFA);
 const Color txtColorTwo= Color(0xFF333333);
 
+ final borderSpecs = OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          borderSide: BorderSide.none,
+                        );
+
 
 
 class MyWidget extends StatelessWidget {

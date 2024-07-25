@@ -106,7 +106,7 @@ class _AuthenticationState extends State<Authentication> {
 
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const HomeScreen(),

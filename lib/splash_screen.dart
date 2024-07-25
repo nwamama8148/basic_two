@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigateToHome() async {
-    await Future.delayed(const Duration(seconds: 5), () {});
+    await Future.delayed(const Duration(seconds: 10 ), () {});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
   }
@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: 
-        Image.asset('assets/images/splash_img.png', width: 184, height: 205,),
+        Image.asset('assets/images/splash_img.png', width: 305, height: 395,),
       ),
     );
   }

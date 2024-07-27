@@ -24,11 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: backgroundColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: AppBar(
+              backgroundColor: backgroundColor,
               scrolledUnderElevation: 0,
               leading: IconButton(
                 icon: const Icon(Icons.menu),
@@ -102,6 +104,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 55,
                         child: Image.asset(
                           'assets/images/filter_menu.png',
+                          errorBuilder: (context, error, stackTrace) {
+                            return Icon(
+                              Icons.error, color: Colors.red,
+                            );
+                          },
                         ),
                       ),
                     )
@@ -119,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          // margin: const EdgeInsets.symmetric(horizontal: 4.0),
                           padding: const EdgeInsets.symmetric(
                             // vertical: 10.0,
                             horizontal: 20.0,
@@ -187,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: Container(
                             width: 152,
-                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                            // margin: const EdgeInsets.symmetric(horizontal: 8.0),
                             padding: const EdgeInsets.symmetric(
                               vertical: 10.0,
                               horizontal: 10.0,
@@ -295,11 +302,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(height: 3),
-                Container(
-                  width: 38, height: 2,
-                  color: Colors.red,
-                  //  margin: EdgeInsets.only(
-                  //      left: 43),
+                Opacity(
+                  opacity: .5,
+                  child: Container(
+                    width: 38, height: 2,
+                    color: Colors.red,
+                    //  margin: EdgeInsets.only(
+                    //      left: 43),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Container(
@@ -321,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: Container(
                             width: 152,
-                            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                            // margin: const EdgeInsets.symmetric(horizontal: 8.0),
                             padding: const EdgeInsets.symmetric(
                               vertical: 10.0,
                               horizontal: 10.0,

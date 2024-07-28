@@ -26,8 +26,8 @@ class CompletedOrderPage extends StatelessWidget {
               const Text(
                 'Order Taken',
                 style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               const SizedBox(height: 9,),
@@ -35,9 +35,9 @@ class CompletedOrderPage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   '''Your order have been taken and is being 
-                          attended to !!!''',
+                        attended to !!!''',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 13,
                     fontFamily: 'Sans',
                   ),
                 ),

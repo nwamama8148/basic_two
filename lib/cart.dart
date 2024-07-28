@@ -1,10 +1,127 @@
-import 'package:basic_two/completed_order_page.dart';
+// import 'package:basic_two/completed_order_page.dart';
 import 'package:basic_two/components/colors.dart';
+import 'package:basic_two/delivery_address.dart';
 import 'package:flutter/material.dart';
 
-class Cart extends StatelessWidget {
-  const Cart({super.key});
+class Cart extends StatefulWidget {
+  Cart({super.key});
 
+  @override
+  State<Cart> createState() => _CartState();
+}
+
+class _CartState extends State<Cart> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _cardNumberController = TextEditingController();
+
+  final TextEditingController _expiryDateController = TextEditingController();
+
+  final TextEditingController _cvvController = TextEditingController();
+
+  void _showPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Card Details'),
+          content: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(hintText: 'Cardholder Name'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the cardholder name';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _cardNumberController,
+                    decoration: const InputDecoration(hintText: 'Card Number'),
+                    keyboardType: TextInputType.number,
+                    maxLength: 16,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the card number';
+                      }
+                      if (value.length != 16) {
+                        return 'Card number must be 16 digits';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _expiryDateController,
+                    decoration:
+                        InputDecoration(hintText: 'Expiry Date (MM/YY)'),
+                    keyboardType: TextInputType.datetime,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the expiry date';
+                      }
+                      if (!RegExp(r'^(0[1-9]|1[0-2])\/?([0-9]{2})$')
+                          .hasMatch(value)) {
+                        return 'Expiry date must be in MM/YY format';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _cvvController,
+                    decoration: InputDecoration(hintText: 'CVV'),
+                    keyboardType: TextInputType.number,
+                    maxLength: 3,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the CVV';
+                      }
+                      if (value.length != 3) {
+                        return 'CVV must be 3 digits';
+                      }
+                      return null;
+                    },
+                  ),
+                
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                 if (_formKey.currentState!.validate()) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> DeliveryAddress(),),);
+                  // Process the form data
+                  print('Cardholder Name: ${_nameController.text}');
+                  print('Card Number: ${_cardNumberController.text}');
+                  print('Expiry Date: ${_expiryDateController.text}');
+                  print('CVV: ${_cvvController.text}');
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // pop up ENDS HERE
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,12 +165,14 @@ class Cart extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(height: 10,),
+                    const Divider(
+                      height: 10,
+                    ),
                     SizedBox(
                       height: 540,
                       child: ListView.builder(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
+                          // horizontal: 6.0,
                           vertical: 19.0,
                         ),
                         itemCount: 23,
@@ -151,14 +270,7 @@ class Cart extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CompletedOrderPage(),
-                        ),
-                      );
-                    },
+                    onPressed: () => _showPopup(context),
                     child: const Text(
                       'Checkout',
                       style: TextStyle(color: txtColorOne),

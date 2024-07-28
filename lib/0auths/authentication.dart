@@ -12,19 +12,13 @@ class Authentication extends StatefulWidget {
 class _AuthenticationState extends State<Authentication> {
   @override
   Widget build(BuildContext context) {
+    // Get the screen size
+    Size screenSize = MediaQuery.of(context).size;
+    double screenHeight = screenSize.height;
+    double screenWidth = screenSize.width;
+    
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('appbar'),
-      //   actions: [
-      //     IconButton(
-      //       icon: const Icon(Icons.shopping_cart),
-      //       tooltip: 'Open shopping cart',
-      //       onPressed: () {
-      //         // handle the press
-      //       },
-      //     ),
-      //   ],
-      // ),
+    
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -35,7 +29,7 @@ class _AuthenticationState extends State<Authentication> {
                 children: <Widget>[
                   Container(
                     width: double.infinity,
-                    height: 409,
+                    height: screenHeight * 0.6,
                     color: halfBackgroundColor,
                     child: Image.asset(
                       'assets/images/welcome_img_two.png',
@@ -86,7 +80,7 @@ class _AuthenticationState extends State<Authentication> {
                     TextFormField(
                       decoration: InputDecoration(
                         filled: true,
-                        contentPadding: EdgeInsets.all(16),
+                        contentPadding: const EdgeInsets.all(16),
                         fillColor: inputBg,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),

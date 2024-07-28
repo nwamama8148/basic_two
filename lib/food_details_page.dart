@@ -1,7 +1,6 @@
 import 'package:basic_two/cart.dart';
 import 'package:basic_two/components/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 final List<String> foodDesc = [
   'Red Quinoa',
@@ -9,7 +8,7 @@ final List<String> foodDesc = [
   'Honey',
   'BlueBerry',
   'Mango',
-  'Strawberries',
+  'Straw',
   'FreshMint',
 ];
 
@@ -18,203 +17,195 @@ class FoodDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Size screenSize = MediaQuery.of(context).size;
+    double screenHeight = screenSize.height;
+    double screenWidth = screenSize.width;
+
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: halfBackgroundColor,
-      body: Column(
-        children: [
-          Expanded(
-            flex: 4,
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    color: halfBackgroundColor,
-                    // borderRadius: const BorderRadius.only(
-                    //   bottomLeft: Radius.circular(30.0),
-                    //   bottomRight: Radius.circular(30.0),
-                    // ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 28.0),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/images/food_three.png',
-                        fit: BoxFit.contain,
-                        height: 146,
-                        width: 146,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                    height: 32,
-                    top: 28,
-                    left: 24,
-                    child: ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.arrow_back_ios_new_sharp),
-                        label: const Text('Back'))),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 10,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 22.0),
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: backgroundColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(22.0),
-                  topRight: Radius.circular(22.0),
-                ),
-              ),
-              child: Column(
+      child: Scaffold(
+        backgroundColor: halfBackgroundColor, // halfBackgroundColor,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
                 children: [
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Quinoa Fruit Salad',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        color: textColorHead,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 3,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset(
-                            'assets/images/remove.png',
-                            width: 32,
-                            height: 32,
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          const Text(
-                            '1',
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w500,
-                              color: textColorHead,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Image.asset(
-                            'assets/images/plus_up.png',
-                            width: 32,
-                            height: 32,
-                          ),
-                        ],
-                      ),
-                      const Text(
-                        'N 2000 ',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500,
-                          color: textColorHead,
+                  Container(
+                    width: double.infinity,
+                    height: 200,
+                    color: halfBackgroundColor, // halfBackgroundColor,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 28.0),
+                        child: Image.asset(
+                          'assets/images/food_three.png',
+                          fit: BoxFit.contain,
+                          height: 130,
+                          width: 130,
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 27,
-                  ),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'This combo contains:',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Arial',
-                          fontWeight: FontWeight.w400),
                     ),
                   ),
-                  const SizedBox(
-                    height: 3,
+                  Positioned(
+                    top: 23,
+                    left: 20,
+                    height: 32,
+                    // width: 95,
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        // padding: EdgeInsets.zero
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_sharp,
+                      ),
+                      label: const Text(
+                        'Back',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
                   ),
-                  Container(
-                    height: 85,
-                    child: GridView.builder(
+                ],
+              ),
+
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                width: double.infinity,
+                height: screenHeight * 0.7,
+                decoration: const BoxDecoration(
+                  color: Colors.white, // backgroundColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(22.0),
+                    topRight: Radius.circular(22.0),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 25),
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Quinoa Fruit Salad',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black, // textColorHead,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/remove.png',
+                              width: 24,
+                              height: 24,
+                            ),
+                            const SizedBox(width: 15),
+                            const Text(
+                              '1',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black, // textColorHead,
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            Image.asset(
+                              'assets/images/plus_up.png',
+                              width: 24,
+                              height: 24,
+                            ),
+                          ],
+                        ),
+                        const Text(
+                          'N 20000 ',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black, // textColorHead,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'This combo contains:',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    GridView.builder(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: foodDesc.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
-                        mainAxisExtent: 38,
-                        crossAxisSpacing: 2,
-                        mainAxisSpacing: 4,
+                        mainAxisSpacing: 6,
+                        crossAxisSpacing: 6,
+                        mainAxisExtent: 28,
                       ),
                       itemBuilder: (context, index) => Container(
                         decoration: BoxDecoration(
-                          color: inputBg,
-                          borderRadius: BorderRadius.circular(10),
+                          color: inputBg, // inputBg,
+                          borderRadius: BorderRadius.circular(7),
                         ),
                         child: Center(
                           child: Text(
                             foodDesc[index],
-                            // style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.black),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Align(
-                    child: Text(
-                        '''If you are looking for a new fruit salad to eat today, you are looking for a new fruit salad to eat today you are looking for a new fruit salad to eat today you are looking for a new fruit salad to eat today quinoa is the perfect brunch for you. make''',
-                        style: GoogleFonts.nunito(
-                          textStyle: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )),
-                  ),
-                  
-
-                  // FOOTER SECTION
-                  Expanded(
-                    child: Row(
+                    const SizedBox(height: 40),
+                    const Text(
+                      'If you are looking for a new fruit salad to eat today, quinoa is w fruit salad to eat today, quinoa i the perfect brunch for you. make...',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(height: 34),
+                    Row(
                       children: [
                         Expanded(
-                          flex: 2,
-                            child: Image.asset('assets/images/wishlist.png', width: 89.0, height: 48.0,),
-                            ),
-                            SizedBox(width: 50,),
-                            
+                          flex: 1,
+                          child: Image.asset(
+                            'assets/images/wishlist.png',
+                            width: 50.0,
+                            height: 50.0,
+                          ),
+                        ),
+                        const SizedBox(width: 20),
                         Expanded(
-                          flex: 10,
+                          flex: 4,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Cart(),
+                                  builder: (context) => Cart(),
                                 ),
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: halfBackgroundColor,
-                              // fixedSize: const Size(370, 56),
+                              backgroundColor:
+                                  halfBackgroundColor, // halfBackgroundColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -222,7 +213,7 @@ class FoodDetailsPage extends StatelessWidget {
                             child: const Text(
                               "Add To Basket",
                               style: TextStyle(
-                                color: backgroundColor,
+                                color: Colors.white,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -230,13 +221,15 @@ class FoodDetailsPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
-            ),
+            
+            ],
           ),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }

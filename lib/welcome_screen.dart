@@ -7,13 +7,18 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen size
+    Size screenSize = MediaQuery.of(context).size;
+    double screenHeight = screenSize.height;
+    double screenWidth = screenSize.width;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             Container(
               width: double.infinity,
-              height: 409,
+              height: screenHeight * 0.56,
               color: halfBackgroundColor,
               child: Image.asset(
                 'assets/images/welcome_screen.png',

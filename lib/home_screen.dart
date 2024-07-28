@@ -1,3 +1,4 @@
+import 'package:basic_two/cart.dart';
 import 'package:basic_two/components/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    // Get the screen size
+    Size screenSize = MediaQuery.of(context).size;
+    double screenHeight = screenSize.height;
+    double screenWidth = screenSize.width;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
@@ -51,7 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(right: 10.0),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Cart()),
+                      );
+                    },
                     tooltip: 'Open shopping cart',
                     iconSize: 34,
                     color: halfBackgroundColor,
@@ -75,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 320,
+                    SizedBox(
+                      width: screenWidth * 0.72,
                       height: 56,
                       child: TextFormField(
                         decoration: InputDecoration(
@@ -100,25 +111,26 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(7),
                           color: backgroundGrey,
                         ),
-                        width: 35,
+                        width: 45,
                         height: 55,
                         child: Image.asset(
                           'assets/images/filter_menu.png',
                           errorBuilder: (context, error, stackTrace) {
-                            return Icon(
-                              Icons.error, color: Colors.red,
+                            return const Icon(
+                              Icons.error,
+                              color: Colors.red,
                             );
                           },
                         ),
                       ),
                     )
                   ],
-                )
+                ),
                 // SEARCH BAR ENDS HERE
-                ,
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
+
                 // SUB HEADING HERE
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: ListView.builder(
@@ -126,34 +138,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
-                          // margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                          padding: const EdgeInsets.symmetric(
-                            // vertical: 10.0,
-                            horizontal: 20.0,
-                          ),
-                          decoration: BoxDecoration(
+                          color: inputBg,
+                          child: Container(
+                            margin: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.symmetric(
+                              // vertical: 10.0,
+                              horizontal: 10.0,
+                            ),
+                            decoration: BoxDecoration(
                               color: backgroundColor,
-                              borderRadius: BorderRadius.circular(11)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                homScreenText[index],
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Arial',
-                                  fontWeight: FontWeight.w400,
-                                  color: txtColorTwo,
+                              borderRadius: BorderRadius.circular(9),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  homScreenText[index],
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Arial',
+                                    fontWeight: FontWeight.w400,
+                                    color: txtColorTwo,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       }),
                 ),
                 // SUB HEADING ENDS HERE
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 28),
                 RichText(
                   textAlign: TextAlign.start,
                   text: const TextSpan(
@@ -164,91 +180,94 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 5),
-                Container(
-                  width: 120, // Set the desired width of the underline
-                  height: 2, // Set the desired height of the underline
-                  color: Colors.red, // Set the desired color of the underline
-                  // margin: EdgeInsets.only(
-                  //     left: 43), // Adjust the margin to center it under the text
+                const SizedBox(height: 3),
+                Opacity(
+                  opacity: .5,
+                  child: Container(
+                    width: 120, height: 1,
+                    color: Colors.red, // margin: EdgeInsets.only(
+                    //     left: 43), e text
+                  ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
 
                 // RECOMMENDED COMBO HERE
                 Container(
+                  padding: EdgeInsets.all(6),
                   width: double.infinity,
-                  height: 173,
-                  color: Colors.transparent,
+                  height: 175,
+                  color: inputBg,
                   child: ListView.builder(
-                      itemCount: null,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const FoodDetailsPage()),
-                            );
-                          },
-                          child: Container(
-                            width: 152,
-                            // margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10.0,
-                              horizontal: 10.0,
+                    itemCount: 15,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FoodDetailsPage(),
                             ),
-                            decoration: BoxDecoration(
-                                color: backgroundColor,
-                                // color: backgroundColor,
-                                borderRadius: BorderRadius.circular(16)),
-                            child: Column(
-                              children: [
-                                Column(
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const CircleAvatar(
-                                      radius: 40,
-                                      backgroundImage: AssetImage(
-                                        'assets/images/food_three.png',
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 6,
-                                    ),
-                                    Text(
-                                      'Berry mango combo',
-                                      style: homeScreenTxtStyle(),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      // crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text('N 2000',
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: 'Arial',
-                                              fontWeight: FontWeight.w500,
-                                              color: textColor,
-                                            )),
-                                        Icon(
-                                          Icons.add,
-                                          color: textColor,
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 10.0,
                           ),
-                        );
-                      }),
+                          decoration: BoxDecoration(
+                              color: backgroundColor,
+                              // color: backgroundColor,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Column(
+                            children: [
+                              Column(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: AssetImage(
+                                      'assets/images/food_three.png',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    '''Berry mango combo''',
+                                    style: homeScreenTxtStyle(),
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('N 2000',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Arial',
+                                            fontWeight: FontWeight.w500,
+                                            color: textColor,
+                                          )),
+                                      Icon(
+                                        Icons.add,
+                                        color: textColor,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 // RECOMMENDED COMBO ENDS HERE
 
@@ -313,80 +332,164 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 10),
                 Container(
+                  padding: EdgeInsets.all(6),
                   width: double.infinity,
-                  height: 173,
-                  color: Colors.transparent,
+                  height: 175,
+                  color: inputBg,
                   child: ListView.builder(
-                      itemCount: null,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const FoodDetailsPage()),
-                            );
-                          },
-                          child: Container(
-                            width: 152,
-                            // margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10.0,
-                              horizontal: 10.0,
+                    itemCount: 15,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FoodDetailsPage(),
                             ),
-                            decoration: BoxDecoration(
-                                color: backgroundColor,
-                                // color: backgroundColor,
-                                borderRadius: BorderRadius.circular(16)),
-                            child: Column(
-                              children: [
-                                Column(
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const CircleAvatar(
-                                      radius: 40,
-                                      backgroundImage: AssetImage(
-                                        'assets/images/food_three.png',
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 6,
-                                    ),
-                                    Text(
-                                      'Berry mango combo',
-                                      style: homeScreenTxtStyle(),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      // crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text('N 2000',
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: 'Arial',
-                                              fontWeight: FontWeight.w500,
-                                              color: textColor,
-                                            )),
-                                        Icon(
-                                          Icons.add,
-                                          color: textColor,
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 10.0,
                           ),
-                        );
-                      }),
+                          decoration: BoxDecoration(
+                              color: backgroundColor,
+                              // color: backgroundColor,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Column(
+                            children: [
+                              Column(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: AssetImage(
+                                      'assets/images/food_three.png',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    '''Berry mango combo''',
+                                    style: homeScreenTxtStyle(),
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('N 2000',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Arial',
+                                            fontWeight: FontWeight.w500,
+                                            color: textColor,
+                                          )),
+                                      Icon(
+                                        Icons.add,
+                                        color: textColor,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
+
+                //SLIDE TWO
+
+                Container(
+                  padding: EdgeInsets.all(6),
+                  width: double.infinity,
+                  height: 175,
+                  color: inputBg,
+                  child: ListView.builder(
+                    itemCount: 15,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FoodDetailsPage(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 10.0,
+                          ),
+                          decoration: BoxDecoration(
+                              color: backgroundColor,
+                              // color: backgroundColor,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Column(
+                            children: [
+                              Column(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: AssetImage(
+                                      'assets/images/food_three.png',
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    '''Berry mango combo''',
+                                    style: homeScreenTxtStyle(),
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('N 2000',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Arial',
+                                            fontWeight: FontWeight.w500,
+                                            color: textColor,
+                                          )),
+                                      Icon(
+                                        Icons.add,
+                                        color: textColor,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                //SLIDE TWO ENDS HERE
                 // FOOTER SECTION ENDS HERE
                 const SizedBox(height: 10),
               ],
@@ -398,19 +501,19 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home, color: halfBackgroundColor,),
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.business_center),
+              icon: const Icon(Icons.business_center, color: halfBackgroundColor,),
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.support_agent_rounded),
+              icon: const Icon(Icons.support_agent_rounded, color: halfBackgroundColor,),
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person, color: halfBackgroundColor,),
             ),
           ],
         ),

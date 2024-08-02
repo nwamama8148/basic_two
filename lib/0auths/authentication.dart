@@ -15,7 +15,7 @@ class _AuthenticationState extends State<Authentication> {
     // Get the screen size
     Size screenSize = MediaQuery.of(context).size;
     double screenHeight = screenSize.height;
-    double screenWidth = screenSize.width;
+    // double screenWidth = screenSize.width;
     
     return Scaffold(
     

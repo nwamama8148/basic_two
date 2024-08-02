@@ -4,7 +4,7 @@ import 'package:basic_two/delivery_address.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
-  Cart({super.key});
+  const Cart({super.key});
 
   @override
   State<Cart> createState() => _CartState();
@@ -36,7 +36,7 @@ class _CartState extends State<Cart> {
 
                   TextFormField(
                     controller: _nameController,
-                    decoration: InputDecoration(hintText: 'Cardholder Name'),
+                    decoration: const InputDecoration(hintText: 'Cardholder Name'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter the cardholder name';
@@ -62,7 +62,7 @@ class _CartState extends State<Cart> {
                   TextFormField(
                     controller: _expiryDateController,
                     decoration:
-                        InputDecoration(hintText: 'Expiry Date (MM/YY)'),
+                        const InputDecoration(hintText: 'Expiry Date (MM/YY)'),
                     keyboardType: TextInputType.datetime,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -77,7 +77,7 @@ class _CartState extends State<Cart> {
                   ),
                   TextFormField(
                     controller: _cvvController,
-                    decoration: InputDecoration(hintText: 'CVV'),
+                    decoration: const InputDecoration(hintText: 'CVV'),
                     keyboardType: TextInputType.number,
                     maxLength: 3,
                     validator: (value) {
@@ -107,10 +107,10 @@ class _CartState extends State<Cart> {
                  if (_formKey.currentState!.validate()) {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> DeliveryAddress(),),);
                   // Process the form data
-                  print('Cardholder Name: ${_nameController.text}');
-                  print('Card Number: ${_cardNumberController.text}');
-                  print('Expiry Date: ${_expiryDateController.text}');
-                  print('CVV: ${_cvvController.text}');
+                  // print('Cardholder Name: ${_nameController.text}');
+                  // print('Card Number: ${_cardNumberController.text}');
+                  // print('Expiry Date: ${_expiryDateController.text}');
+                  // print('CVV: ${_cvvController.text}');
                 }
               },
               child: const Text('Submit'),

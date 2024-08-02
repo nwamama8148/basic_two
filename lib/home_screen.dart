@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // Get the screen size
     Size screenSize = MediaQuery.of(context).size;
-    double screenHeight = screenSize.height;
+    // double screenHeight = screenSize.height;
     double screenWidth = screenSize.width;
 
     return SafeArea(
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Cart()),
+                        MaterialPageRoute(builder: (context) => const Cart()),
                       );
                     },
                     tooltip: 'Open shopping cart',
@@ -193,10 +193,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // RECOMMENDED COMBO HERE
                 Container(
-                  padding: EdgeInsets.all(6),
+                  padding: const EdgeInsets.all(6),
                   width: double.infinity,
                   height: 175,
-                  color: inputBg,
+                  color: backgroundColor,
                   child: ListView.builder(
                     itemCount: 15,
                     scrollDirection: Axis.horizontal,
@@ -218,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             horizontal: 10.0,
                           ),
                           decoration: BoxDecoration(
-                              color: backgroundColor,
+                              color: inputBg,
                               // color: backgroundColor,
                               borderRadius: BorderRadius.circular(16)),
                           child: Column(
@@ -332,7 +332,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  padding: EdgeInsets.all(6),
+                  padding: const EdgeInsets.all(6),
                   width: double.infinity,
                   height: 175,
                   color: inputBg,
@@ -412,7 +412,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //SLIDE TWO
 
                 Container(
-                  padding: EdgeInsets.all(6),
+                  padding: const EdgeInsets.all(6),
                   width: double.infinity,
                   height: 175,
                   color: inputBg,

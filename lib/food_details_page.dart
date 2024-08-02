@@ -20,7 +20,7 @@ class FoodDetailsPage extends StatelessWidget {
 
     Size screenSize = MediaQuery.of(context).size;
     double screenHeight = screenSize.height;
-    double screenWidth = screenSize.width;
+    // double screenWidth = screenSize.width;
 
     return SafeArea(
       child: Scaffold(
@@ -76,7 +76,7 @@ class FoodDetailsPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 22.0),
                 width: double.infinity,
-                height: screenHeight * 0.7,
+                height: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.white, // backgroundColor,
                   borderRadius: BorderRadius.only(
@@ -199,7 +199,7 @@ class FoodDetailsPage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Cart(),
+                                  builder: (context) => const Cart(),
                                 ),
                               );
                             },

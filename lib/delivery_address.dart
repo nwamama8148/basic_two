@@ -13,7 +13,7 @@ class DeliveryAddress extends StatelessWidget {
     // Get the screen size
     Size screenSize = MediaQuery.of(context).size;
     double screenHeight = screenSize.height;
-    double screenWidth = screenSize.width;
+    // double screenWidth = screenSize.width;
 
     return SafeArea(
       child: Scaffold(
